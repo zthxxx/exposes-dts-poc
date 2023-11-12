@@ -1,1 +1,3 @@
-export * from '@monospace/openapp/src'
+export const exposes = [
+  '@monospace/openapp/src'
+]

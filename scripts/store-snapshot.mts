@@ -6,7 +6,7 @@ import { glob, argv, fs, chalk } from 'zx'
 
 /**
  * usage:
- *   tsx scripts/store-snapshot.mts <no-alias | aliased>
+ *   tsx scripts/store-snapshot.mts <no-alias | alias>
  */
 
 async function storeSnapshots({ extensions, testDir, snapshotPath }: {
@@ -20,6 +20,8 @@ async function storeSnapshots({ extensions, testDir, snapshotPath }: {
     .join('|')
 
   const testFiles = await glob(`**/*.(${extensionsGlob})`, { cwd: testDir, onlyFiles: true })
+
+  await fs.remove(snapshotPath)
 
   await Promise.all(testFiles.map(async file => {
     const sourceFilePath = path.join(testDir, file)

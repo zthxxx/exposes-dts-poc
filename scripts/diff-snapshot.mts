@@ -5,7 +5,7 @@ import { glob, argv, fs, chalk } from 'zx'
 
 /**
  * usage:
- *   tsx scripts/diff-snapshot.mts <no-alias | aliased>
+ *   tsx scripts/diff-snapshot.mts <no-alias | alias>
  */
 
 async function diffSnapshots({ extensions, testDir, snapshotPath }: {
@@ -55,7 +55,7 @@ async function diffSnapshots({ extensions, testDir, snapshotPath }: {
     const targetFile = await fs.readFile(targetFilePath, { encoding: 'utf-8' })
 
     if (sourceFile !== targetFile) {
-      diffs.push(sourceFilePath)
+      diffs.push(`${sourceFilePath} ${chalk.gray(`(${targetFilePath})`)}`)
     }
   }
 

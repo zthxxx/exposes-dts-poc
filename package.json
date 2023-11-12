@@ -1,4 +1,4 @@
- {
+{
   "name": "exposes-dts-poc",
   "version": "0.0.0",
   "description": "",
@@ -12,18 +12,24 @@
   },
   "scripts": {
     "clean": "rm -rf types",
-    "mklink": "mkdir -p node_modules/@monospace/openapp",
-    "build": "npm-run-all clean mklink build:types",
-    "build:types": "tsc -p ./tsconfig.types.json",
-    "test:alias": "npm run build && tsx scripts/diff-snapshot.mts alias",
-    "test:no-alias": "npm run build && tsx scripts/diff-snapshot.mts no-alias"
+    "mklink": "mkdir -p node_modules/@monospace/openapp && touch node_modules/@monospace/openapp/package.json",
+    "build:no-alias": "npm run clean && tsc -p ./tsconfig.types.json",
+    "build:alias": "npm run clean && tspc -p ./tsconfig.types.json",
+    "test:no-alias": "npm run build:no-alias && tsx scripts/diff-snapshot.mts no-alias",
+    "test:alias": "npm run build:alias && tsx scripts/diff-snapshot.mts alias",
+    "test": "npm-run-all mklink test:no-alias test:alias"
+  },
+  "dependencies": {
+    "ttypescript": "^1.5.15",
+    "typescript": "^5.2.2",
+    "typescript-transform-paths": "^3.4.6"
   },
   "devDependencies": {
     "@types/node": "^20.9.0",
     "@zthxxx/tsconfig": "^1.0.2",
     "npm-run-all": "^4.1.5",
+    "ts-patch": "^3.0.2",
     "tsx": "^4.1.2",
-    "typescript": "^5.2.2",
     "zx": "^7.2.3"
   }
 }
