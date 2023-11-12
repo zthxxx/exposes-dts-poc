@@ -3,11 +3,19 @@ import { existsSync } from 'fs'
 import { glob, argv, fs, chalk } from 'zx'
 
 
+// Get snapshot directory argument
+const snapshotDir = argv._[0]
 
-/**
- * usage:
- *   tsx scripts/store-snapshot.mts <no-alias | alias>
- */
+if (!snapshotDir) {
+  console.error(`
+    ${chalk.redBright('Error: No snapshot directory specified.')}
+    Usage:
+      ${chalk.whiteBright('tsx scripts/store-snapshot.mts <no-alias | alias>')}
+      ${chalk.whiteBright('pnpm snapshot:store <no-alias | alias>')}
+  `)
+  process.exit(1)
+}
+
 
 async function storeSnapshots({ extensions, testDir, snapshotPath }: {
   extensions: string[];
@@ -35,17 +43,6 @@ async function storeSnapshots({ extensions, testDir, snapshotPath }: {
   }))
 }
 
-// Get snapshot directory argument
-const snapshotDir = argv._[0]
-
-// Validate input
-if (!snapshotDir) {
-  console.error(
-    chalk.redBright('Error: No snapshot directory specified.'),
-  )
-  process.exit(1)
-}
-
 
 const extensions = ['.d.ts']
 const testDir = 'types/'
@@ -57,3 +54,7 @@ await storeSnapshots({
   testDir,
   snapshotPath,
 })
+
+console.log(`
+  ${chalk.whiteBright(`Snapshot store in:`)} ${chalk.greenBright(snapshotPath)} 
+`)

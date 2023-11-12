@@ -9,8 +9,11 @@
     "declarationMap": true,
     // https://www.typescriptlang.org/tsconfig#isolatedModules
     "isolatedModules": false,
+    // typescript plugins apply by ts-patch
+    // https://github.com/nonara/ts-patch
     "plugins": [
       {
+        // https://github.com/LeDDGroup/typescript-transform-paths
         "transform": "typescript-transform-paths",
         "afterDeclarations": true,
       },

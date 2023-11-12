@@ -48,7 +48,7 @@ async function diffSnapshots({ extensions, testDir, snapshotPath }: {
 
     const sourceFile = await fs.readFile(sourceFilePath, { encoding: 'utf-8' })
     if (!existsSync(targetFilePath)) {
-      exceed.push(targetFilePath)
+      exceed.push(sourceFilePath)
       continue
     }
 
@@ -101,7 +101,7 @@ if (diffs.length) {
 
 if (exceed.length) {
   console.error(`
-  ${chalk.redBright('Exceed files in the output types/:')}
+  ${chalk.redBright(`Exceed files in the output types/ ${chalk.gray(`(not found in ${snapshotPath})`)}:`)}
   ${exceed
     .map(file => chalk.yellowBright(`  - ${file}`))
     .join('\n  ')
@@ -111,7 +111,7 @@ if (exceed.length) {
 
 if (lose.length) {
   console.error(`
-  ${chalk.redBright('Missing files in the output types/:')}
+  ${chalk.redBright(`Missing files in the output types/:`)}
   ${lose
     .map(file => chalk.yellowBright(`  - ${file}`))
     .join('\n  ')

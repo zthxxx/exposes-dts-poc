@@ -17,7 +17,8 @@
     "build:alias": "npm run clean && tspc -p ./tsconfig.types.json",
     "test:no-alias": "npm run build:no-alias && tsx scripts/diff-snapshot.mts no-alias",
     "test:alias": "npm run build:alias && tsx scripts/diff-snapshot.mts alias",
-    "test": "npm-run-all mklink test:no-alias test:alias"
+    "test": "npm-run-all mklink test:no-alias test:alias",
+    "snapshot:store": "tsx scripts/store-snapshot.mts"
   },
   "dependencies": {
     "ttypescript": "^1.5.15",

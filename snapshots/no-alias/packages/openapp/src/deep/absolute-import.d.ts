@@ -1,7 +1,9 @@
 import { type BaseType } from '@monospace/openapp/src/deep/types';
+import { TTy } from '@monospace/openapp/src/deep/export-index';
 export declare const asd = "sdg";
 export declare const Lier: {
     acc: string;
+    tty: TTy;
 };
 export type Lire = BaseType | {
     lire: Number;
