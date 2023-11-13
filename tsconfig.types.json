@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "types",
+    "target": "ES2022",
+    "module": "ESNext",
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declarationMap": true,
+    // https://www.typescriptlang.org/tsconfig#isolatedModules
+    "isolatedModules": false,
+  },
+  "include": [
+    "expose",
+  ],
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.stories.tsx",
+    "**/*.mock.ts",
+    "**/tests",
+    "**/mocks",
+  ],
+}

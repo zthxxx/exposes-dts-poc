@@ -1,0 +1,29 @@
+ {
+  "name": "exposes-dts-poc",
+  "version": "0.0.0",
+  "description": "",
+  "repository": "",
+  "homepage": "",
+  "private": true,
+  "author": "zthxxx <zthxxx.me@gmail.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "scripts": {
+    "clean": "rm -rf types",
+    "mklink": "mkdir -p node_modules/@monospace/openapp",
+    "build": "npm-run-all clean mklink build:types",
+    "build:types": "tsc -p ./tsconfig.types.json",
+    "test:alias": "npm run build && tsx scripts/diff-snapshot.mts alias",
+    "test:no-alias": "npm run build && tsx scripts/diff-snapshot.mts no-alias"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@zthxxx/tsconfig": "^1.0.2",
+    "npm-run-all": "^4.1.5",
+    "tsx": "^4.1.2",
+    "typescript": "^5.2.2",
+    "zx": "^7.2.3"
+  }
+}
