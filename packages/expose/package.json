@@ -1,0 +1,49 @@
+{
+  "name": "@monospace/expose",
+  "version": "1.0.0",
+  "description": "",
+  "repository": "",
+  "homepage": "",
+  "private": true,
+  "license": "ISC",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "types/remote-main/expose/*.d.ts",
+        "types/remote-main/expose/*/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "README.md",
+    "types",
+    "expose"
+  ],
+  "scripts": {
+    "clean": "rm -rf types",
+    "build:tsc": "npm run clean && tsc -p ./tsconfig.types.json",
+    "build:ts-patch": "npm run clean && tspc -p ./tsconfig.types.json",
+    "build:tsc-alias": "npm run clean && tsc -p ./tsconfig.types.json && tsc-alias -p ./tsconfig.types.json",
+    "test:tsc": "npm run build:tsc && tsx scripts/diff-snapshot.mts tsc",
+    "test:ts-patch": "npm run build:ts-patch && tsx scripts/diff-snapshot.mts ts-patch",
+    "test:tsc-alias": "npm run build:tsc-alias && tsx scripts/diff-snapshot.mts tsc-alias",
+    "test": "npm-run-all test:tsc test:ts-patch test:tsc-alias",
+    "snapshot:store": "tsx scripts/store-snapshot.mts"
+  },
+  "dependencies": {
+    "tsc-alias": "^1.8.8",
+    "ttypescript": "^1.5.15",
+    "typescript": "^5.2.2",
+    "typescript-transform-paths": "^3.4.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "npm-run-all": "^4.1.5",
+    "ts-patch": "^3.0.2",
+    "tsx": "^4.1.2",
+    "zx": "^7.2.3"
+  }
+}

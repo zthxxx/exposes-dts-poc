@@ -1,0 +1,12 @@
+{
+  "name": "@monospace/openapp",
+  "version": "1.0.0",
+  "description": "",
+  "repository": "",
+  "homepage": "",
+  "private": true,
+  "license": "ISC",
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

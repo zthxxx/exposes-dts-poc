@@ -5,32 +5,18 @@
   "repository": "",
   "homepage": "",
   "private": true,
-  "author": "zthxxx <zthxxx.me@gmail.com>",
-  "license": "MIT",
+  "license": "ISC",
   "publishConfig": {
     "access": "restricted"
   },
   "scripts": {
-    "clean": "rm -rf types",
-    "mklink": "mkdir -p node_modules/@monospace/openapp && touch node_modules/@monospace/openapp/package.json",
-    "build:no-alias": "npm run clean && tsc -p ./tsconfig.types.json",
-    "build:alias": "npm run clean && tspc -p ./tsconfig.types.json",
-    "test:no-alias": "npm run build:no-alias && tsx scripts/diff-snapshot.mts no-alias",
-    "test:alias": "npm run build:alias && tsx scripts/diff-snapshot.mts alias",
-    "test": "npm-run-all mklink test:no-alias test:alias",
-    "snapshot:store": "tsx scripts/store-snapshot.mts"
-  },
-  "dependencies": {
-    "ttypescript": "^1.5.15",
-    "typescript": "^5.2.2",
-    "typescript-transform-paths": "^3.4.6"
+    "test": "pnpm --filter expose test"
   },
   "devDependencies": {
+    "@monospace/base": "workspace:*",
+    "@monospace/openapp": "workspace:*",
     "@types/node": "^20.9.0",
     "@zthxxx/tsconfig": "^1.0.2",
-    "npm-run-all": "^4.1.5",
-    "ts-patch": "^3.0.2",
-    "tsx": "^4.1.2",
-    "zx": "^7.2.3"
+    "typescript": "^5.2.2"
   }
 }

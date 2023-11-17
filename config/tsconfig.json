@@ -1,0 +1,23 @@
+{
+  "extends": "@zthxxx/tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "baseUrl": ".",
+
+    // https://www.typescriptlang.org/tsconfig#moduleResolution
+    // https://www.typescriptlang.org/docs/handbook/modules/reference.html#node16-nodenext-1
+    "moduleResolution": "node",
+    // https://www.typescriptlang.org/tsconfig#resolvePackageJsonExports
+    "resolvePackageJsonExports": false,
+
+    "types": [
+      "node",
+    ],
+
+    "jsx": "react-jsx",
+
+    "paths": {
+      "@monospace/*": ["../packages/*"],
+    },
+  },
+}

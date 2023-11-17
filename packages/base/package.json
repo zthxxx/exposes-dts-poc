@@ -1,0 +1,15 @@
+{
+  "name": "@monospace/base",
+  "version": "1.0.0",
+  "description": "",
+  "repository": "",
+  "homepage": "",
+  "private": true,
+  "license": "ISC",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.38"
+  }
+}

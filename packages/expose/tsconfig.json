@@ -1,0 +1,45 @@
+{
+  "extends": "../../config/tsconfig.json",
+  "compilerOptions": {
+    "rootDirs": ["."],
+    "baseUrl": ".",
+    "outDir": "types",
+
+    "target": "ESNext",
+    "module": "ESNext",
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declarationMap": true,
+    // https://www.typescriptlang.org/tsconfig#isolatedModules
+    "isolatedModules": false,
+
+    // https://www.typescriptlang.org/tsconfig#moduleResolution
+    // https://www.typescriptlang.org/docs/handbook/modules/reference.html#node16-nodenext-1
+    // NodeNext to support ESModule `exports` `imports`
+    "moduleResolution": "Node",
+    // https://www.typescriptlang.org/tsconfig#resolvePackageJsonExports
+    "resolvePackageJsonExports": false,
+
+    // typescript plugins apply by ts-patch
+    // https://github.com/nonara/ts-patch
+    "plugins": [
+      {
+        // https://github.com/LeDDGroup/typescript-transform-paths
+        "transform": "typescript-transform-paths",
+        "afterDeclarations": true,
+      },
+    ]
+  },
+  "include": [
+    "expose",
+    "scripts",
+  ],
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.stories.tsx",
+    "**/*.mock.ts",
+    "**/tests",
+    "**/mocks",
+  ],
+}

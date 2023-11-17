@@ -1,26 +1,6 @@
 {
-  "extends": "@zthxxx/tsconfig/tsconfig.json",
-  "compilerOptions": {
-    "target": "ES2022",
-    "rootDir": ".",
-    "baseUrl": ".",
-
-    "types": [
-      "node",
-    ],
-
-    // set by Next.js
-    // Next.js implements its own optimized jsx transform
-    "jsx": "preserve",
-
-    "paths": {
-      "@monospace/openapp": ["packages/openapp"],
-      "@monospace/openapp/*": ["packages/openapp/*"],
-      "@monospace/*": ["packages/*"],
-    },
-  },
+  "extends": "./config/tsconfig.json",
   "include": [
     "packages",
-    "expose",
   ],
 }
