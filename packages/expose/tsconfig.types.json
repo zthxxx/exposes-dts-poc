@@ -12,6 +12,6 @@
     },
   },
   "include": [
-    "expose",
+    "expose/index.ts",
   ],
 }
