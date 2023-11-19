@@ -9,18 +9,17 @@ and then compare and validate the following aims:
 - [x] Replace out **alias paths** in `d.ts` by `tsconfig`'s `"paths"` that
   change "`absolute`" import paths in monorepo packages to `relative` ones.
   - ❌ `tsc` (typical see `packages/expose/snapshots/ts-patch/expose/expose/expose.d.ts`)
-  - 🟢 `tsc` + `tsc-alias`
-  - 🟡 `ts-patch`
-    - 🟢 with package sub-path
-    - ❌ package root index <br/>
-      (see `../../../../base` in `packages/expose/snapshots/ts-patch/expose/expose/expose.d.ts`)
+  - 🟢 `ts-patch` / `tsc` + `tsc-alias`
+- [x] Replaced relative **alias paths** with direct package root index import in source file (`import '@monospace/base'`)
+  - ❌ `tsc`
+  - 🟢 `ts-patch` / `tsc` + `tsc-alias`
 - [x] `d.ts` files are only generated for entry files listed in `tsconfig`'s `"paths"` under `include` and all they covered dependencies.
   - 🟢 `ts-patch` & `tsc` & `tsc-alias`
 - [x] No `d.ts` if the original files aren't import by any dependency in `expose` entries.
   - 🟢 `ts-patch` & `tsc` & `tsc-alias`
 - [x] Keep the same file structure in generated `d.ts` as the original files.
   - 🟢 `ts-patch` & `tsc` & `tsc-alias`
-- [x] `"paths"` attribute should override any existing same-named packages in `node_modules`.
+- [x] `"paths"` attribute should override any existing same-named packages in `node_modules` with symlink.
   - 🟢 `ts-patch` & `tsc` & `tsc-alias`
 - [ ] No `d.ts` if the original files be imported by not used in any export symbol.
   - ❌ `ts-patch` & `tsc` & `tsc-alias`, see
@@ -45,8 +44,9 @@ step by step:
 ```bash
 cd packages/expose
 
-pnpm test:no-alias
-pnpm test:alias
+pnpm test:tsc
+pnpm test:ts-patch
+pnpm test:tsc-alias
 ```
 
 ### Refresh Snapshot
@@ -54,11 +54,14 @@ pnpm test:alias
 ```bash
 cd packages/expose
 
-pnpm build:no-alias
-pnpm snapshot:store no-alias
+pnpm test:tsc
+pnpm snapshot:store tsc
 
-pnpm build:alias
-pnpm snapshot:store alias
+pnpm test:ts-patch
+pnpm snapshot:store ts-patch
+
+pnpm test:tsc-alias
+pnpm snapshot:store tsc-alias
 ```
 
 ### File Structure
